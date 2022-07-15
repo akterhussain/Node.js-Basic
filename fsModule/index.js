@@ -2,13 +2,20 @@ var fs = require('fs');
 var http = require('http');
 
 var server = http.createServer(function(req, res){
-    if(req.url="/"){
-        //asy
-        let myData = fs.readFileSync('home.html');
-        res.writeHead(200, {'Content-type':'text/html'});
-        res.write(myData);
-        res.end();
-    }
+    if(req.url=="/"){
+        fs.writeFile("demo.txt", "Hello Bangladesh", function(error){
+            if(error){
+                res.writeHead(200, {'Content-type':'text/html'});
+                res.write("File Write Fail");
+                res.end();
+            }
+            else{
+                res.writeHead(200, {'Content-type':'text/html'});
+                res.write("File Write Success");
+                res.end();
+            }
+        })
+    }     
 });
 
 server.listen(4040);
