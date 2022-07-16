@@ -6,19 +6,19 @@ MongoClient.connect(url, function(error, myMongoClient){
         console.log('Connection falid');
     } else{
         console.log('connection successfull');
-        insertData(myMongoClient);
+        deleteData(myMongoClient);
     }
 });
 
-function insertData(myMongoClient){
+function deleteData(myMongoClient){
     var myDatabase = myMongoClient.db('demo');
     var myCollection = myDatabase.collection('list');
-    var myData = {Name:'Akter Hussain', Address:'Dhampti', Mobile:'01783943225', Role:'Admin'};
-    myCollection.insertOne(myData, function(error){
+    var delData = {Name:'Moni Akter'};
+    myCollection.deleteOne(delData, function(error){
         if(error){
-            console.log('Data insert falid');
+            console.log('Data delete falid');
         } else{
-            console.log('Data insert successfull');
+            console.log('Data delete successfull');
         }
     });
 }
